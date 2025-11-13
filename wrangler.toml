@@ -1,0 +1,10 @@
+# This is the name of your Worker/site
+name = "mainpage-1cy"
+
+# Use the current date
+compatibility_date = "2025-11-13"
+
+[assets]
+# This is the path to your static files (e.g., where index.html is)
+# Use "./" for the root directory or "./public" if it's in a 'public' folder.
+directory = "./"
