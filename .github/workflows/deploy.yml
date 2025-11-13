@@ -24,4 +24,4 @@ jobs:
           
           # This is the command it will run
           # 'wrangler deploy' reads your 'wrangler.toml' and deploys
-          command: wrangler deploy --minify
+          command: deploy --minify
