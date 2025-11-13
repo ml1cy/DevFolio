@@ -1,0 +1,27 @@
+name: Deploy to Cloudflare Workers
+
+# Run this workflow on pushes to the 'main' branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Deploy to Cloudflare
+        # This is the official GitHub Action for Wrangler
+        uses: cloudflare/wrangler-action@v3
+        with:
+          # Use the secrets you created
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          
+          # This is the command it will run
+          # 'wrangler deploy' reads your 'wrangler.toml' and deploys
+          command: wrangler deploy --minify
