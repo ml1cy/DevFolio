@@ -5,206 +5,351 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ijaz Ali | Portfolio</title>
     <link rel="icon" type="image/x-icon" href="/Images/favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#6366F1',
-                        secondary: '#0F172A',
-                        accent: '#8B5CF6',
-                        space: {
-                            50: '#F8FAFC',
-                            100: '#F1F5F9',
-                            200: '#E2E8F0',
-                            300: '#CBD5E1',
-                            400: '#94A3B8',
-                            500: '#64748B',
-                            600: '#475569',
-                            700: '#334155',
-                            800: '#1E293B',
-                            900: '#0F172A'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #0F172A;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #6366F1;
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #8B5CF6;
-        }
-    </style>
 </head>
-<body class="bg-space-900 text-gray-100 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.03"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]">
+<body>
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-space-800/90 backdrop-blur-md border-b border-space-700 z-50">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <h1 class="text-2xl font-bold text-primary">
-                    <a href="#home"><i class="fas fa-rocket mr-2"></i></a>
-                </h1>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link hover:text-primary transition-colors">Home</a>
-                    <a href="#about" class="nav-link hover:text-primary transition-colors">About</a>
-                    <a href="#projects" class="nav-link hover:text-primary transition-colors">Projects</a>
-                    <a href="#skills" class="nav-link hover:text-primary transition-colors">Skills</a>
-                    <a href="#contact" class="nav-link hover:text-primary transition-colors">Contact</a>
-                </div>
-                <button class="md:hidden text-gray-300 hover:text-primary transition-colors" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
-                <a href="#home" class="block py-2 hover:text-primary transition-colors">Home</a>
-                <a href="#about" class="block py-2 hover:text-primary transition-colors">About</a>
-                <a href="#projects" class="block py-2 hover:text-primary transition-colors">Projects</a>
-                <a href="#skills" class="block py-2 hover:text-primary transition-colors">Skills</a>
-                <a href="#contact" class="block py-2 hover:text-primary transition-colors">Contact</a>
+    <nav>
+        <div class="container">
+            <a href="/index.html" class="logo">
+                <i class="fas fa-rocket"></i> Ijaz
+            </a>
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/pages/about.html">About</a></li>
+                <li><a href="/pages/projects.html">Projects</a></li>
+                <li><a href="/pages/skills.html">Skills</a></li>
+                <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="pt-24 pb-16 min-h-screen flex items-center bg-gradient-to-br from-space-900 via-primary/20 to-accent/30 text-white relative overflow-hidden">
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <div class="max-w-4xl mx-auto">
-                <div class="mb-8">
-                    <i class="fas fa-meteor text-6xl text-yellow-400 mb-4 animate-pulse"></i>
+    <section class="hero">
+        <div class="container">
+            <div style="max-width: 800px; animation: fadeInUp 0.8s ease-out;">
+                <div style="margin-bottom: 2rem;">
+                    <i class="fas fa-code" style="font-size: 4rem; color: var(--primary);"></i>
                 </div>
-                <h1 class="text-5xl md:text-7xl font-bold mb-6">Hi, I'm <span class="text-yellow-300 bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">Ijaz</span></h1>
-                <p class="text-xl md:text-2xl mb-8 text-gray-200">Front-End Developer & Creative Problem Solver</p>
-                <p class="text-lg mb-12 text-gray-300 max-w-2xl mx-auto">
-                    I craft stunning interfaces and interactive web experiences.
+                <h1>Hi, I'm <span class="gradient-text">Ijaz</span></h1>
+                <p style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #cbd5e1;">
+                    Front-End Developer & Creative Problem Solver
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#projects" class="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary/80 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-primary/25">
-                        <i class="fas fa-rocket mr-2"></i>View My Work
+                <p style="font-size: 1.1rem; color: #94a3b8; margin-bottom: 2.5rem; max-width: 600px;">
+                    I craft stunning interfaces and interactive web experiences that leave a lasting impression. 
+                    Let's build something extraordinary together.
+                </p>
+                <div class="hero-buttons">
+                    <a href="/pages/projects.html" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> View My Work
                     </a>
-                    <a href="#contact" class="border-2 border-primary text-primary px-8 py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105">
-                        <i class="fas fa-satellite mr-2"></i>Get In Touch
+                        <a href="/pages/contact.html" class="btn btn-outline">
+                        <i class="fas fa-paper-plane"></i> Get In Touch
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-space-800/50 backdrop-blur-sm">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16 text-white">
-                <i class="fas fa-user-astronaut mr-4 text-primary"></i>About Me
-            </h2>
-            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-                <div class="relative">
-                    <div class="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-lg blur-xl opacity-20"></div>
-                    <img src="Images/me.jpg" 
-                         alt="Profile" class="rounded-lg shadow-2xl w-full relative z-10 border border-space-600">
+    <!-- Quick Stats -->
+    <section style="background: rgba(99, 102, 241, 0.05); padding: 4rem 0;">
+        <div class="container">
+            <div class="grid grid-3">
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem;">3+</div>
+                    <p style="color: #cbd5e1; font-weight: 500;">Years Experience</p>
                 </div>
-                <div>
-                    <h3 class="text-2xl font-semibold mb-6 text-primary">
-                        <i class="fas fa-rocket mr-2"></i>Who I Am
-                    </h3>
-                    <p class="text-lg mb-6 text-gray-300">
-                        I'm a part-time front-end developer with a love for creating clean and minimalistic user interfaces.
-                        I do this mainly as a hobby, but would love to do it as a job!
-                    </p>
-                    <p class="text-lg mb-6 text-gray-300">
-                        When I'm not coding, you can find me gaming, cooking,
-                        at school, or out with friends.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4 mt-8">
-                        <div class="text-center p-4 bg-space-700/50 rounded-lg border border-space-600 backdrop-blur-sm">
-                            <div class="text-2xl font-bold text-primary">3+</div>
-                            <div class="text-gray-400">Years Experience</div>
-                        </div>
-                        <div class="text-center p-4 bg-space-700/50 rounded-lg border border-space-600 backdrop-blur-sm">
-                            <div class="text-2xl font-bold text-primary">5+</div>
-                            <div class="text-gray-400">Projects Completed</div>
-                        </div>
-                        <div class="text-center p-4 bg-space-700/50 rounded-lg border border-space-600 backdrop-blur-sm">
-                            <div class="text-2xl font-bold text-primary">3+</div>
-                            <div class="text-gray-400">Happy Clients</div>
-                        </div>
-                        <div class="text-center p-4 bg-space-700/50 rounded-lg border border-space-600 backdrop-blur-sm">
-                            <div class="text-2xl font-bold text-primary">15+</div>
-                            <div class="text-gray-400">Technologies</div>
-                        </div>
-                    </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem;">5+</div>
+                    <p style="color: #cbd5e1; font-weight: 500;">Projects Completed</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem;">15+</div>
+                    <p style="color: #cbd5e1; font-weight: 500;">Technologies</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-space-900/50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16 text-white">
-                <i class="fas fa-satellite-dish mr-4 text-primary"></i>My Projects
-            </h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                <!-- Project 1 -->
-                <div class="bg-space-800/80 backdrop-blur-sm rounded-lg shadow-2xl overflow-hidden hover:shadow-primary/20 transition-all duration-300 border border-space-700 hover:border-primary/50 group">
-                    <div class="relative overflow-hidden">
-                        <img src="Images/ppshly.png" 
-                             alt="Project 1" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-space-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    <!-- Featured Projects Preview -->
+    <section>
+        <div class="container">
+            <h2><i class="fas fa-star" style="color: var(--primary);"></i> Featured Work</h2>
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="image-wrapper" style="height: 250px; margin-bottom: 1.5rem;">
+                        <img src="/Images/ppshly.png" alt="PPSHoly">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-white">PPSHoly</h3>
-                        <p class="text-gray-300 mb-4">
-                            A small compilation of games I used to play while in school. Wrapped in a clean UI.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm border border-primary/30">HTML 5</span>
-                            <span class="px-3 py-1 bg-accent/20 text-accent rounded-full text-sm border border-accent/30">CSS 3</span>
-                            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm border border-yellow-500/30">JavaScript</span>
-                        </div>
-                        <div class="flex gap-4">
-                            <a href="https://ppshly.netlify.app" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 transition-colors">
-                                <i class="fas fa-external-link-alt mr-1"></i>Live Demo
-                            </a>
-                            <a href="https://github.com/ml1cy/ppshly" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 transition-colors">
-                                <i class="fab fa-github mr-1"></i>GitHub
-                            </a>
-                        </div>
+                    <h3>PPSHoly</h3>
+                    <p style="color: #94a3b8; margin: 1rem 0;">
+                        A small compilation of games I used to play while in school. Wrapped in a clean UI.
+                    </p>
+                    <div style="margin: 1.5rem 0;">
+                        <span class="badge">HTML 5</span>
+                        <span class="badge">CSS 3</span>
+                        <span class="badge">JavaScript</span>
                     </div>
+                    <a href="https://ppshly.netlify.app" target="_blank" class="btn btn-primary" style="display: inline-block;">
+                        <i class="fas fa-external-link-alt"></i> View Project
+                    </a>
                 </div>
 
-                <!-- Project 2 -->
-                <div class="bg-space-800/80 backdrop-blur-sm rounded-lg shadow-2xl overflow-hidden hover:shadow-primary/20 transition-all duration-300 border border-space-700 hover:border-primary/50 group">
-                    <div class="relative overflow-hidden">
-                        <img src="Images/nxtdr.png" 
-                             alt="Project 2" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-space-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="card">
+                    <div class="image-wrapper" style="height: 250px; margin-bottom: 1.5rem;">
+                        <img src="/Images/nxtdr.png" alt="Nextdoortech">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-white">Nextdoortech.org</h3>
-                        <p class="text-gray-300 mb-4">
-                            A sleek and clean website for my startup tech repair company.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm border border-primary/30">HTML 5</span>
-                            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm border border-yellow-500/30">JavaScript</span>
-                            <span class="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full text-sm border border-cyan-500/30">Tailwind CSS</span>
+                    <h3>Nextdoortech.org</h3>
+                    <p style="color: #94a3b8; margin: 1rem 0;">
+                        A sleek and clean website for my startup tech repair company.
+                    </p>
+                    <div style="margin: 1.5rem 0;">
+                        <span class="badge">HTML 5</span>
+                        <span class="badge">JavaScript</span>
+                        <span class="badge">Tailwind CSS</span>
+                    </div>
+                    <a href="https://nextdoortech.org" target="_blank" class="btn btn-primary" style="display: inline-block;">
+                        <i class="fas fa-external-link-alt"></i> View Project
+                    </a>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2.5rem;">
+                <a href="/pages/projects.html" class="btn btn-outline">View All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.1) 100%); text-align: center;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">Ready to Start Your Next Project?</h2>
+            <p style="font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Let's collaborate to bring your ideas to life. I'm always interested in hearing about new projects.
+            </p>
+            <a href="/pages/contact.html" class="btn btn-primary">
+                <i class="fas fa-envelope"></i> Contact Me
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Ijaz Ali | Portfolio</title>
+                <link rel="icon" type="image/x-icon" href="/Images/favicon.ico">
+                <link rel="stylesheet" href="/css/styles.css">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+            </head>
+            <body>
+                <!-- Navigation -->
+                <nav>
+                    <div class="container">
+                        <a href="/index.html" class="logo">
+                            <i class="fas fa-rocket"></i> Ijaz
+                        </a>
+                        <ul class="nav-links">
+                            <li><a href="/index.html">Home</a></li>
+                            <li><a href="/pages/about.html">About</a></li>
+                            <li><a href="/pages/projects.html">Projects</a></li>
+                            <li><a href="/pages/skills.html">Skills</a></li>
+                            <li><a href="/pages/contact.html">Contact</a></li>
+                        </ul>
+                        <div class="hamburger" aria-label="Open menu" role="button">
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
+                    </div>
+                </nav>
+
+                <!-- Hero Section -->
+                <section class="hero">
+                    <div class="container">
+                        <div style="max-width: 800px; animation: fadeInUp 0.8s ease-out;">
+                            <div style="margin-bottom: 2rem;">
+                                <i class="fas fa-code" style="font-size: 4rem; color: var(--primary);"></i>
+                            </div>
+                            <h1>Hi, I'm <span class="gradient-text">Ijaz</span></h1>
+                            <p style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #cbd5e1;">
+                                Front-End Developer & Creative Problem Solver
+                            </p>
+                            <p style="font-size: 1.1rem; color: #94a3b8; margin-bottom: 2.5rem; max-width: 600px;">
+                                I craft stunning interfaces and interactive web experiences that leave a lasting impression. 
+                                Let's build something extraordinary together.
+                            </p>
+                            <div class="hero-buttons">
+                                <a href="/projects.html" class="btn btn-primary">
+                                    <i class="fas fa-rocket"></i> View My Work
+                                </a>
+                                <a href="/contact.html" class="btn btn-outline">
+                                    <i class="fas fa-paper-plane"></i> Get In Touch
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quick Stats -->
+                <section style="background: rgba(99, 102, 241, 0.05); padding: 4rem 0;">
+                    <div class="container">
+                        <div class="grid grid-3">
+                            <div class="card" style="text-align: center;">
+                                <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem;">3+</div>
+                                <p style="color: #cbd5e1; font-weight: 500;">Years Experience</p>
+                            </div>
+                            <div class="card" style="text-align: center;">
+                                <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem;">5+</div>
+                                <p style="color: #cbd5e1; font-weight: 500;">Projects Completed</p>
+                            </div>
+                            <div class="card" style="text-align: center;">
+                                <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem;">15+</div>
+                                <p style="color: #cbd5e1; font-weight: 500;">Technologies</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Featured Projects Preview -->
+                <section>
+                    <div class="container">
+                        <h2><i class="fas fa-star" style="color: var(--primary);"></i> Featured Work</h2>
+                        <div class="grid grid-2">
+                            <div class="card">
+                                <div class="image-wrapper" style="height: 250px; margin-bottom: 1.5rem;">
+                                    <img src="/Images/ppshly.png" alt="PPSHoly">
+                                </div>
+                                <h3>PPSHoly</h3>
+                                <p style="color: #94a3b8; margin: 1rem 0;">
+                                    A small compilation of games I used to play while in school. Wrapped in a clean UI.
+                                </p>
+                                <div style="margin: 1.5rem 0;">
+                                    <span class="badge">HTML 5</span>
+                                    <span class="badge">CSS 3</span>
+                                    <span class="badge">JavaScript</span>
+                                </div>
+                                <a href="https://ppshly.netlify.app" target="_blank" class="btn btn-primary" style="display: inline-block;">
+                                    <i class="fas fa-external-link-alt"></i> View Project
+                                </a>
+                            </div>
+
+                            <div class="card">
+                                <div class="image-wrapper" style="height: 250px; margin-bottom: 1.5rem;">
+                                    <img src="/Images/nxtdr.png" alt="Nextdoortech">
+                                </div>
+                                <h3>Nextdoortech.org</h3>
+                                <p style="color: #94a3b8; margin: 1rem 0;">
+                                    A sleek and clean website for my startup tech repair company.
+                                </p>
+                                <div style="margin: 1.5rem 0;">
+                                    <span class="badge">HTML 5</span>
+                                    <span class="badge">JavaScript</span>
+                                    <span class="badge">Tailwind CSS</span>
+                                </div>
+                                <a href="https://nextdoortech.org" target="_blank" class="btn btn-primary" style="display: inline-block;">
+                                    <i class="fas fa-external-link-alt"></i> View Project
+                                </a>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 2.5rem;">
+                            <a href="/projects.html" class="btn btn-outline">View All Projects</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.1) 100%); text-align: center;">
+                    <div class="container">
+                        <h2 style="text-align: center; margin-bottom: 1.5rem;">Ready to Start Your Next Project?</h2>
+                        <p style="font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                            Let's collaborate to bring your ideas to life. I'm always interested in hearing about new projects.
+                        </p>
+                        <a href="/contact.html" class="btn btn-primary">
+                            <i class="fas fa-envelope"></i> Contact Me
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Footer -->
+                <footer>
+                    <div class="container">
+                        <div style="text-align: center;">
+                            <p>&copy; 2025 Ijaz Ali. All rights reserved.</p>
+                            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Built with ❤️ using modern web technologies</p>
+                            <div class="social-links">
+                                <a href="https://github.com/ml1cy" title="GitHub" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://x.com/ml1cy" title="Twitter" target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://www.instagram.com/ijazaliii" title="Instagram" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" title="Discord" onclick="copyDiscordUsername(event)">
+                                    <i class="fab fa-discord"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+                <script>
+                    // Make navbar links reflect current page
+                    function updateNav() {
+                        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                        document.querySelectorAll('.nav-links a').forEach(link => {
+                            link.classList.remove('active');
+                            const href = link.getAttribute('href') || '';
+                            if (href.endsWith(currentPage)) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+
+                    // Copy discord username
+                    function copyDiscordUsername(e) {
+                        if (e) e.preventDefault();
+                        navigator.clipboard?.writeText('ml.1cy').then(() => showToast('Discord username copied!')).catch(() => showToast('Copy failed'));
+                    }
+
+                    // Simple toast
+                    function showToast(msg) {
+                        const t = document.createElement('div');
+                        t.className = 'toast';
+                        t.textContent = msg;
+                        document.body.appendChild(t);
+                        setTimeout(() => t.remove(), 3000);
+                    }
+
+                    // Mobile menu toggle
+                    const hamburger = document.querySelector('.hamburger');
+                    const navLinks = document.querySelector('.nav-links');
+                    hamburger?.addEventListener('click', () => {
+                        if (getComputedStyle(navLinks).display === 'flex') {
+                            navLinks.style.display = 'none';
+                        } else {
+                            navLinks.style.display = 'flex';
+                            navLinks.style.flexDirection = 'column';
+                            navLinks.style.gap = '1rem';
+                        }
+                    });
+
+                    // Initialize
+                    document.addEventListener('DOMContentLoaded', updateNav);
+                    window.addEventListener('popstate', updateNav);
+                </script>
+            </body>
+            </html>
                         <div class="flex gap-4">
                             <a href="https://nextdoortech.org" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 transition-colors">
                                 <i class="fas fa-external-link-alt mr-1"></i>Live Demo
@@ -694,47 +839,5 @@
         }
 
     </script>
-    <style>
-        .skill-item {
-             @apply bg-space-700/60 text-gray-300 px-4 py-2 rounded-md border border-space-600 transition-all duration-300 hover:bg-primary/30 hover:text-white hover:border-primary;
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .animate-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Toast notification styles */
-        .toast {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #10B981;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            z-index: 1000;
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .toast.show {
-            transform: translateX(0);
-        }
-        
-        .toast i {
-            font-size: 16px;
-        }
-    </style>
 </body>
 </html>
