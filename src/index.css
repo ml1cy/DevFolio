@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  @apply antialiased;
+}
+
+body {
+  @apply font-sans bg-midnight text-mist min-h-screen;
+  background-image: theme('backgroundImage.mesh');
+}
+
+a {
+  @apply text-mist transition duration-200;
+}
+
+a:hover {
+  @apply text-aurora;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(126, 242, 157, 0.6), rgba(56, 189, 248, 0.6));
+  border-radius: 9999px;
+}
+
+.grid-overlay {
+  background-image: theme('backgroundImage.grid');
+  background-size: theme('backgroundSize.grid');
+  background-position: center;
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.6), transparent 65%);
+  opacity: 0.5;
+}
+
+.section-shell {
+  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative;
+}
+
+.card-surface {
+  @apply bg-void/80 border border-white/5 rounded-2xl backdrop-blur-lg shadow-glow;
+}
+
+.tag {
+  @apply px-3 py-1 rounded-full bg-white/5 text-sm text-mist border border-white/10;
+}
+
+.button-primary {
+  @apply inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-plasma via-cobalt to-aurora px-5 py-3 text-sm font-semibold text-midnight shadow-neon transition hover:-translate-y-0.5;
+}
+
+.button-ghost {
+  @apply inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-mist hover:border-aurora hover:text-aurora transition;
+}
+
+.glow-ring {
+  @apply relative overflow-hidden;
+}
+
+.glow-ring::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg, rgba(126, 242, 157, 0.3), rgba(56, 189, 248, 0.25), rgba(168, 85, 247, 0.3));
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+h1, h2, h3, h4 {
+  @apply font-semibold text-white tracking-tight;
+}
+
+h1 {
+  @apply text-4xl sm:text-5xl lg:text-6xl leading-tight;
+}
+
+h2 {
+  @apply text-3xl sm:text-4xl mb-6;
+}
+
+p.lead {
+  @apply text-lg text-mist/80;
+}
