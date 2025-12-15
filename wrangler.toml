@@ -1,0 +1,5 @@
+name = "mainpage-1cy"
+compatibillity_date = "2025-12-15"
+
+[assets]
+directory = "/public"
