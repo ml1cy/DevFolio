@@ -8,6 +8,10 @@
     <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -92,6 +96,13 @@
             align-items: center;
         }
 
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-left: auto;
+        }
+
         .navbar-title {
             font-size: 1.5rem;
             font-weight: 700;
@@ -135,6 +146,20 @@
 
         .nav-links a:hover {
             color: var(--md-sys-color-primary);
+        }
+
+        /* Special styling for Alec link */
+        .alec-link {
+            color: var(--md-sys-color-primary);
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 2px;
+        }
+
+        .alec-link:hover,
+        .alec-link:focus-visible {
+            color: var(--md-sys-color-secondary);
         }
 
         .container {
@@ -259,6 +284,14 @@
             color: var(--md-sys-color-on-surface-variant);
         }
 
+        .about-skills {
+            margin-top: 2rem;
+        }
+
+        .about-skills h3 {
+            margin-top: 0;
+        }
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -329,6 +362,48 @@
             border-radius: 1rem;
             font-size: 0.8rem;
             font-weight: 500;
+        }
+
+        .project-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.5rem;
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            text-decoration: none;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .project-button:hover {
+            background-color: var(--md-sys-color-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(200%);
+            background-color: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            border: 1px solid var(--md-sys-color-outline);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
         }
 
         .contact-section {
@@ -405,12 +480,6 @@
 
         footer a {
             color: var(--md-sys-color-primary);
-            .social-links-contact a svg {
-                width: 1.5rem;
-                height: 1.5rem;
-                fill: currentColor;
-            }
-
             text-decoration: none;
         }
 
@@ -418,20 +487,71 @@
             text-decoration: underline;
         }
 
+        .social-links-contact a svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: currentColor;
+        }
+
+        .social-links-contact a:nth-child(2) svg {
+            width: 1.3rem;
+            height: 1.3rem;
+        }
+
         @media (max-width: 768px) {
             .navbar-content {
-                flex-direction: column;
-                gap: 1rem;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0.75rem;
+                position: relative;
             }
 
             .navbar-content > div {
-                flex-direction: column;
+                flex-direction: row;
+            }
+
+            .nav-actions {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 0.5rem;
             }
 
             .nav-links {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
+                display: block;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: calc(100%);
+                background: var(--md-sys-color-surface);
+                overflow: hidden;
+                max-height: 0;
+                transition: max-height 0.35s ease, padding 0.35s ease, border-color 0.35s ease;
+                padding-top: 0;
+                margin-top: 0;
+                border-top: 1px solid var(--md-sys-color-outline-variant);
+                z-index: 99;
+            }
+
+            .nav-links.open {
+                max-height: 300px; /* enough to show all links */
+                padding-top: 0.75rem;
+            }
+
+            .nav-links.open li {
+                display: block;
+                margin: 0.125rem 0;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 0.75rem 1rem;
+                line-height: 1.25;
+            }
+
+            #navToggle {
+                display: inline-flex !important;
             }
 
             .portrait {
@@ -467,6 +587,39 @@
                 padding: 2rem;
             }
         }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .portrait {
+                width: 120px;
+                height: 120px;
+            }
+
+            .project-card {
+                padding: 1rem;
+            }
+
+            .project-button {
+                padding: 0.5rem 1.25rem;
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -474,16 +627,17 @@
     <nav class="navbar">
         <div class="navbar-content">
             <a href="index.html" class="navbar-title">Ijaz Ali</a>
-            <div style="display: flex; align-items: center; gap: 2rem;">
+            <div class="nav-actions">
+                <button class="theme-toggle" id="navToggle" aria-label="Toggle navigation" style="display:none">☰</button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <span id="themeIcon">🌙</span>
+                </button>
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="../index.html">Low Bandwidth</a></li>
                 </ul>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                    <span id="themeIcon">🌙</span>
-                </button>
             </div>
         </div>
     </nav>
@@ -523,33 +677,34 @@
                     <p>I hold a <strong>CompTIA Tech+ Certification</strong> & am actively pursuing further credentials including A+, Network+, Security+, & Linux Professional Institute certifications.</p>
                     <p>With hands-on experience in both frontend development & systems administration, I enjoy bridging the gap between beautiful user interfaces & robust backend systems. I'm particularly enthusiastic about home lab experimentation & building practical networking solutions.</p>
                 </div>
-                <div>
-                    <h3>Core Competencies</h3>
-                    <div class="skills-grid">
-                        <div class="skill-card">
-                            <h4>🐧 Linux Systems</h4>
-                            <p>Deep passion for Linux. Experienced with various distributions, system administration, & server management.</p>
-                        </div>
-                        <div class="skill-card">
-                            <h4>🏠 Home Labbing</h4>
-                            <p>Custom networking environments, VLAN configurations, virtualization, & self-hosted services on Raspberry Pi & dedicated hardware.</p>
-                        </div>
-                        <div class="skill-card">
-                            <h4>🌐 Networking</h4>
-                            <p>Wired & wireless infrastructure design, configuration, & troubleshooting. Network security & optimization.</p>
-                        </div>
-                        <div class="skill-card">
-                            <h4>💻 Programming</h4>
-                            <p>Proficient in Python, JavaScript, HTML/CSS, & other languages. Always learning new technologies.</p>
-                        </div>
-                        <div class="skill-card">
-                            <h4>🎨 Web Development</h4>
-                            <p>Front-end specialist with a strong preference for Material Design principles. Creating responsive, accessible user experiences.</p>
-                        </div>
-                        <div class="skill-card">
-                            <h4>🔧 Tech Repair</h4>
-                            <p>Hardware diagnostics, software troubleshooting, & customer-focused support services.</p>
-                        </div>
+            </div>
+
+            <div class="about-skills">
+                <h3>Core Competencies</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h4>🐧 Linux Systems</h4>
+                        <p>Deep passion for Linux. Experienced with various distributions, system administration, & server management.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h4>🏠 Home Labbing</h4>
+                        <p>Custom networking environments, VLAN configurations, virtualization, & self-hosted services on Raspberry Pi & dedicated hardware.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h4>🌐 Networking</h4>
+                        <p>Wired & wireless infrastructure design, configuration, & troubleshooting. Network security & optimization.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h4>💻 Programming</h4>
+                        <p>Proficient in Python, JavaScript, HTML/CSS, & other languages. Always learning new technologies.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h4>🎨 Web Development</h4>
+                        <p>Front-end specialist with a strong preference for Material Design principles. Creating responsive, accessible user experiences.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h4>🔧 Tech Repair</h4>
+                        <p>Hardware diagnostics, software troubleshooting, & customer-focused support services.</p>
                     </div>
                 </div>
             </div>
@@ -562,20 +717,21 @@
             <h2>Featured Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <h3>AOC System</h3>
+                    <h3>AirportOps System</h3>
                     <p class="project-description">A sophisticated custom system designed to automatically count airport operations for non-towered airstrips. This project solves a critical need for tracking airfield usage data without manual intervention or human error.</p>
-                    <p><strong>Impact:</strong> Enables accurate operational metrics for small airstrips, supporting maintenance scheduling & usage analysis.</p>
+                    <p><strong>Impact:</strong> Enables accurate operational metrics for small airstrips, supporting maintenance scheduling & usage analysis. Partnered with <a href="https://griztech.tech" target="_blank" rel="noopener noreferrer" class="alec-link">Alec Griswold</a>.</p>
                     <p><strong>Technologies:</strong> Python, Data Processing, Automation</p>
                     <div class="project-meta">
                         <span class="project-tag">Python</span>
                         <span class="project-tag">Automation</span>
                         <span class="project-tag">Data</span>
                     </div>
+                    <a href="https://github.com/AOC-Marshall-testing" class="project-button">Open</a>
                 </div>
 
                 <div class="project-card">
                     <h3>Nextdoor Tech Repair</h3>
-                    <p class="project-description">A specialized tech repair service focused on delivering quick, reliable solutions for hardware & software issues. Co-owned with <a href="https://griztech.tech" target="_blank">Alec Griswold</a>, this business combines technical expertise with customer-first service.</p>
+                    <p class="project-description">A specialized tech repair service focused on delivering quick, reliable solutions for hardware & software issues. Co-owned with <a href="https://griztech.tech" target="_blank" rel="noopener noreferrer" class="alec-link">Alec Griswold</a>, this business combines technical expertise with customer-first service.</p>
                     <p><strong>Services:</strong> Hardware repair, software support, diagnostics, data recovery, & custom builds.</p>
                     <p><strong>Focus:</strong> Fast turnaround times, transparent pricing, & honest technical guidance.</p>
                     <div class="project-meta">
@@ -583,6 +739,7 @@
                         <span class="project-tag">Support</span>
                         <span class="project-tag">Hardware</span>
                     </div>
+                    <a href="https://nextdoortech.org" class="project-button">Open</a>
                 </div>
 
                 <div class="project-card">
@@ -595,6 +752,7 @@
                         <span class="project-tag">Linux</span>
                         <span class="project-tag">Infrastructure</span>
                     </div>
+                    <button class="project-button" id="homelabBtn">Open</button>
                 </div>
 
                 <div class="project-card">
@@ -607,6 +765,33 @@
                         <span class="project-tag">Design</span>
                         <span class="project-tag">Web</span>
                     </div>
+                    <button class="project-button" id="devfolioBtn">Open</button>
+                </div>
+
+                <div class="project-card">
+                    <h3>OpenL1nked</h3>
+                    <p class="project-description">A cross-platform, open-source alternative to Microsoft's Phone Link & similar device synchronization applications. Designed to seamlessly connect & sync your mobile device with your desktop environment.</p>
+                    <p><strong>Goals:</strong> Provide a freedom-respecting, privacy-focused solution for device integration across Windows, macOS, & Linux.</p>
+                    <p><strong>Features:</strong> Multi-platform support, open-source codebase, file synchronization, & notification relay.</p>
+                    <div class="project-meta">
+                        <span class="project-tag">Open Source</span>
+                        <span class="project-tag">Cross-Platform</span>
+                        <span class="project-tag">Privacy</span>
+                    </div>
+                    <a href="https://github.com/OpenL1nked" class="project-button">Open</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>PPSHoly</h3>
+                    <p class="project-description">A fun, interactive game website created during middle school. This project was my early exploration into web development & game design, combining HTML, CSS, & JavaScript to create an engaging gaming experience.</p>
+                    <p><strong>Experience:</strong> Early hands-on experience with web technologies & interactive game mechanics.</p>
+                    <p><strong>Significance:</strong> Sparked my passion for web development & showed me the potential of creating interactive experiences on the web.</p>
+                    <div class="project-meta">
+                        <span class="project-tag">Game Dev</span>
+                        <span class="project-tag">Web</span>
+                        <span class="project-tag">Learning</span>
+                    </div>
+                    <a href="https://github.com/ml1cy/ppshly" class="project-button">Open</a>
                 </div>
             </div>
         </div>
@@ -650,6 +835,10 @@
         </div>
     </section>
 
+    <!-- Toast Notifications -->
+    <div id="toast" class="toast">You're already here! 🎉</div>
+    <div id="toastHomelab" class="toast">Homelab blog is temporarily down.</div>
+
     <!-- Footer -->
     <footer>
         <p>&copy; <span id="year"></span> Ijaz Ali. All rights reserved.</p>
@@ -681,6 +870,47 @@
 
         function updateThemeIcon(theme) {
             themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+        }
+
+        // Toast notification functionality
+        const devfolioBtn = document.getElementById('devfolioBtn');
+        const toast = document.getElementById('toast');
+
+        devfolioBtn.addEventListener('click', () => {
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        });
+
+        // Homelab toast notification
+        const homelabBtn = document.getElementById('homelabBtn');
+        const toastHomelab = document.getElementById('toastHomelab');
+
+        if (homelabBtn && toastHomelab) {
+            homelabBtn.addEventListener('click', () => {
+                toastHomelab.classList.add('show');
+                setTimeout(() => {
+                    toastHomelab.classList.remove('show');
+                }, 3000);
+            });
+        }
+
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.querySelector('.nav-links');
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                navLinks.classList.toggle('open');
+            });
+
+            // Close menu when a link is clicked (mobile UX)
+            navLinks.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                });
+            });
         }
     </script>
 </body>
