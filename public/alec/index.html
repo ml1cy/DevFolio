@@ -1,4 +1,226 @@
-<img src="alec.webp">
-<img src="alec2.jpg">
-<img src="alec3.jpg">
-<img src="alec4.jpg">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alec</title>
+    <meta name="description" content="A small photo wall for Alec">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,700;9..144,900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #f4ede1;
+            --dots: #e3d8c5;
+            --ink: #2a2521;
+            --muted: #7a6f63;
+            --card: #fffdf8;
+            --tape: rgba(255, 224, 130, 0.75);
+            --accent: #e0567a;
+            --shadow: 0 1px 2px rgba(42, 37, 33, 0.12), 0 10px 24px -8px rgba(42, 37, 33, 0.28);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --paper: #1d1a17;
+                --dots: #2c2824;
+                --ink: #f1e9dc;
+                --muted: #a3978a;
+                --card: #f6f0e4;
+                --tape: rgba(255, 214, 102, 0.55);
+                --accent: #ff7fa0;
+                --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 14px 30px -8px rgba(0, 0, 0, 0.7);
+            }
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--ink);
+            background-color: var(--paper);
+            background-image: radial-gradient(var(--dots) 1.2px, transparent 1.2px);
+            background-size: 22px 22px;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        }
+
+        header {
+            text-align: center;
+            padding: clamp(48px, 10vw, 96px) 16px 24px;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: "Fraunces", Georgia, serif;
+            font-weight: 900;
+            font-size: clamp(4rem, 16vw, 9rem);
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+        }
+
+        h1 span { color: var(--accent); }
+
+        .tagline {
+            margin: 12px 0 0;
+            font-family: "Caveat", cursive;
+            font-size: clamp(1.4rem, 4vw, 1.9rem);
+            color: var(--muted);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 32px 16px 64px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: clamp(28px, 4vw, 48px);
+            align-items: start;
+        }
+
+        .polaroid {
+            position: relative;
+            display: block;
+            margin: 0;
+            padding: 12px 12px 0;
+            background: var(--card);
+            box-shadow: var(--shadow);
+            color: #2a2521;
+            text-decoration: none;
+            transform: rotate(var(--tilt, 0deg));
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .polaroid:nth-child(1) { --tilt: -2.5deg; }
+        .polaroid:nth-child(2) { --tilt: 1.8deg; margin-top: 24px; }
+        .polaroid:nth-child(3) { --tilt: -1.2deg; }
+        .polaroid:nth-child(4) { --tilt: 2.6deg; margin-top: 16px; }
+
+        .polaroid::before {
+            content: "";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            width: 88px;
+            height: 26px;
+            background: var(--tape);
+            transform: translateX(-50%) rotate(calc(var(--tilt) * -1.5));
+        }
+
+        .polaroid:hover,
+        .polaroid:focus-visible {
+            transform: rotate(0deg) scale(1.04);
+            z-index: 1;
+            outline: none;
+        }
+
+        .polaroid:focus-visible { box-shadow: var(--shadow), 0 0 0 3px var(--accent); }
+
+        .polaroid img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            background: #ddd3c4;
+        }
+
+        .polaroid figcaption {
+            padding: 10px 4px 14px;
+            text-align: center;
+            font-family: "Caveat", cursive;
+            font-size: 1.6rem;
+            line-height: 1.1;
+        }
+
+        .polaroid small {
+            display: block;
+            margin-top: 2px;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            font-size: 0.7rem;
+            color: #7a6f63;
+        }
+
+        /* CSS-only lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: rgba(20, 17, 15, 0.92);
+        }
+
+        .lightbox:target { display: flex; }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .lightbox .close {
+            position: absolute;
+            inset: 0;
+            cursor: zoom-out;
+        }
+
+        .lightbox .close span {
+            position: absolute;
+            top: 12px;
+            right: 20px;
+            color: #fff;
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 0 16px 40px;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        footer a { color: inherit; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .polaroid { transition: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Alec<span>.</span></h1>
+        <p class="tagline">a highly scientific collection of evidence</p>
+    </header>
+
+    <main>
+        <a class="polaroid" href="#photo-1">
+            <img src="alec.webp" alt="Alec at a dance, holding a cat balloon" loading="lazy">
+            <figcaption>plus one: cat</figcaption>
+        </a>
+        <a class="polaroid" href="#photo-2">
+            <img src="alec2.jpg" alt="Alec biting into a pickle" loading="lazy">
+            <figcaption>big dill</figcaption>
+        </a>
+        <a class="polaroid" href="#photo-3">
+            <img src="alec3.jpg" alt="Alec posing on the grass, chin in hands" loading="lazy">
+            <figcaption>senior portrait energy<small>&copy; Jay Pike Photography</small></figcaption>
+        </a>
+        <a class="polaroid" href="#photo-4">
+            <img src="alec4.jpg" alt="Close-up of Alec mid-expression" loading="lazy">
+            <figcaption>no further questions</figcaption>
+        </a>
+    </main>
+
+    <div class="lightbox" id="photo-1"><a class="close" href="#" aria-label="Close"><span>&times;</span></a><img src="alec.webp" alt="Alec at a dance, holding a cat balloon" loading="lazy"></div>
+    <div class="lightbox" id="photo-2"><a class="close" href="#" aria-label="Close"><span>&times;</span></a><img src="alec2.jpg" alt="Alec biting into a pickle" loading="lazy"></div>
+    <div class="lightbox" id="photo-3"><a class="close" href="#" aria-label="Close"><span>&times;</span></a><img src="alec3.jpg" alt="Alec posing on the grass, chin in hands" loading="lazy"></div>
+    <div class="lightbox" id="photo-4"><a class="close" href="#" aria-label="Close"><span>&times;</span></a><img src="alec4.jpg" alt="Close-up of Alec mid-expression" loading="lazy"></div>
+
+    <footer><a href="/">&larr; back home</a></footer>
+</body>
+</html>
